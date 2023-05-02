@@ -10,7 +10,7 @@ One of the key features of the website is the ability for users to create their 
 
 ### Bidding on Other Auctions
 
-Another important feature of the website is the ability to bid on other auctions. Users can search the website for auctions that interest them and place their bids. The website uses a secure bidding system to ensure that all bids are recorded accurately and fairly.
+Another important feature of the website is the ability to bid on other auctions. Users can like auctions that interest them and place their bids. The website uses a secure bidding system to ensure that all bids are recorded accurately and fairly.
 
 ### Secure Payment with Stripe
 
