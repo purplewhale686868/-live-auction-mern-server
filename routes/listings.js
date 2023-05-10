@@ -7,6 +7,31 @@ import { verifyToken } from "../verifyToken.js";
 
 const router = express.Router();
 
+// create listing
+router.post("/newListing", verifyToken, async (req, res) => {
+  try {
+    const { userId, title, description, imagePath, category, bid } = req.body;
+
+    const newListing = new Listing({
+      ownerId: userId,
+      title,
+      description,
+      imagePath,
+      category,
+      bid,
+      winnerId: "",
+    });
+    const savedListing = await newListing.save();
+
+    const newBid = new Bid({ bid, ownerId: userId, listingId: newListing._id });
+    await newBid.save();
+
+    res.status(200).json(savedListing);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // get 1 listing
 router.get("/find/:id", async (req, res) => {
   try {
@@ -97,8 +122,7 @@ router.patch("/:listingId/bidding", verifyToken, async (req, res) => {
         { bid: currentBid, ownerId: userId },
         { new: true }
       );
-      // const newBid = new Bid({ bid: currentBid, ownerId: userId, listingId });
-      // const savedBid = await newBid.save();
+
       const updatedListing = await Listing.findByIdAndUpdate(
         listingId,
         { bid: currentBid },

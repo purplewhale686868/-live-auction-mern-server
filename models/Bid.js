@@ -8,8 +8,7 @@ const BidSchema = new mongoose.Schema(
     },
     ownerId: {
       type: String,
-    }, // userId
-    // listingId
+    },
     listingId: {
       type: String,
     },
